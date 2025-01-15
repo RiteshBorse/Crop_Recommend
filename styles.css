@@ -17,7 +17,7 @@ html, body {
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent tiling */
   width: 100%;
-  height: 50vh; /* Set header height to 50% of the viewport */
+  height: 45vh; /* Set header height to 50% of the viewport */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +116,7 @@ html, body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {
-    height: 46vh; /* Slightly larger header for tablets */
+    height: 40vh; /* Slightly larger header for tablets */
     font-size: 28px; /* Adjust font size */
   }
 
@@ -143,7 +143,7 @@ html, body {
 
 @media (max-width: 480px) {
   .header {
-    height: 50vh; /* Larger header for very small screens */
+    height: 45vh; /* Larger header for very small screens */
     font-size: 24px; /* Further adjust font size */
   }
 
