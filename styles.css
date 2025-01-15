@@ -98,19 +98,20 @@ html, body {
   background-color: #36d080;
   border: none;
   color: white;
-  padding: 15px 30px;
+  padding: 20px 40px; /* Increased padding for larger button */
   text-align: center;
-  font-size: 18px; /* Bigger text size */
-  font-weight: bold; /* Make the button text bold */
+  font-size: 20px; /* Larger font size */
+  font-weight: bold; /* Make text bold */
   cursor: pointer;
-  border-radius: 5px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add light shadow to text */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px; /* Slightly larger border radius */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
+  transition: all 0.3s ease; /* Smooth hover effect */
 }
 
+/* Hover Effect */
 .button button:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #36d080;
+  transform: scale(1.05); /* Slightly enlarges on hover */
 }
 
 /* Responsive Design */
@@ -136,8 +137,9 @@ html, body {
   }
 
   .button button {
-    padding: 12px 25px;
-    font-size: 16px;
+    padding: 25px 50px; /* Further increase padding for better touch accessibility */
+    font-size: 24px; /* Larger font size for better readability */
+    border-radius: 10px; /* More rounded corners for a modern look */
   }
 }
 
