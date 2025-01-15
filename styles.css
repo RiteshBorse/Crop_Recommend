@@ -12,7 +12,7 @@ html, body {
 
 /* Header Section */
 .header {
-  background-image: url('Crop_Recommend/green\ bg.png'); /* Replace with the path to your image */
+  background-image: url('green\ bg.png'); /* Replace with the path to your image */
   background-size: cover; /* Ensure the image covers the entire header */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent tiling */
