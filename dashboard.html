@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌱 CultivAI Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <img src="CultivAI (1).png" alt="CultivAI Logo" class="logo-image">
+      </div>
+      <h2>Weather Insights for Smarter Farming</h2>
+      <b><div id="greeting" class="greeting">--</div></b>
+      <div class="hamburger-menu" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="menu-slider" id="menu-slider">
+      <button class="close-btn" id="close-btn">✖</button>
+      <div class="menu-header">
+        <img src="user-profile.png" alt="User Profile" class="menu-image">
+        <h3>Welcome, Farmer!</h3>
+      </div>
+      <div class="menu-cards">
+        <div class="menu-card" onclick="navigateTo('dashboard.html')">
+          <h4>Dashboard</h4>
+        </div>
+        <div class="menu-card" onclick="navigateTo('crop-strategies.html')">
+          <h4>Crop Strategies</h4>
+        </div>
+        <div class="menu-card" onclick="navigateTo('alerts.html')">
+          <h4>Alerts</h4>
+        </div>
+        <div class="menu-card" onclick="navigateTo('insights.html')">
+          <h4>Insights</h4>
+        </div>
+        <div class="menu-card" onclick="navigateTo('feedback.html')">
+          <h4>Feedback</h4>
+        </div>
+        <div class="menu-card logout" onclick="navigateTo('logout.html')">
+          <h4>Logout</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section id="weather-overview" class="weather-overview">
+      <div class="info-box-weather">
+        <div class="graphic">
+          <img src="" alt="Weather Icon" id="weather-icon">
+        </div>
+        <div class="main-weather">
+          <b>
+            <p id="weather-condition">--</p>
+            <p id="temperature">--°C</p>
+            <p class="location">Jalgaon, India</p>
+          </b>
+        </div>
+      </div>
+    </section>
+    
+    <section id="additional-details" class="additional-details">
+      <div class="info-box">
+        <img src="uv-index.png" alt="UV Index Icon">
+        <p><b>UV Index</b></p>
+        <b><p id="uv-index">--</p></b>
+      </div>
+      <div class="info-box">
+        <img src="humidity-icon.png" alt="Humidity Icon">
+        <b><p>Humidity</p>
+        <p id="humidity">--%</p></b>
+      </div>
+    </section>
+
+    <section id="rainfall-info" class="rainfall-info">
+      <h3>Rainfall Probability</h3>
+      <div class="progress-bar">
+        <div id="rainfall-bar"></div>
+      </div>
+      <p id="rainfall-chances">--%</p>
+    </section>
+
+    <footer>
+      <p id="advice">Loading advice...</p>
+    </footer>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
