@@ -92,6 +92,7 @@ header {
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s;
+  
 }
 
 .menu-card:hover {
@@ -102,6 +103,7 @@ header {
   margin: 0;
   font-size: 1.1rem;
   color: #333;
+  text-decoration: none;
 }
 
 .menu-card.logout {
