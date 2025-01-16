@@ -1,4 +1,4 @@
-const API_KEY = "580cb0981ce9a294a111aa2343a073b1"; // Replace with your OpenWeather API key
+const API_KEY = ""; // Replace with your OpenWeather API key
 const CITY = "Sangli"; // Default city
 const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
 
@@ -22,9 +22,9 @@ const weatherImageMap = {
 
 function getGreeting() {
   const hour = new Date().getHours();
-  if (hour < 12) return "Good Morning 🌞";
-  if (hour < 18) return "Good Afternoon ☀️";
-  return "Good Night 🌙";
+  if (hour < 12) return "Good Morning!";
+  if (hour < 18) return "Good Afternoon!";
+  return "Good Night!";
 }
 
 async function fetchWeatherData() {
