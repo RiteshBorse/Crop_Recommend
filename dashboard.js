@@ -95,5 +95,5 @@ overlay.addEventListener("click", () => {
 
 // Initialize the page
 document.getElementById("greeting").textContent = getGreeting();
-fetchWeatherData();
+await fetchWeatherData();
 setupHamburgerMenu();
