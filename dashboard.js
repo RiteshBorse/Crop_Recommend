@@ -1,4 +1,8 @@
-import { API_KEY, API_URL, CITY } from "./config.js";
+
+
+const CITY = "Sangli";
+const API_KEY = `580cb0981ce9a294a111aa2343a073b1`;
+const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
 
 
 // Map OpenWeatherMap icon codes to local images
@@ -43,7 +47,7 @@ async function fetchWeatherData() {
     document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
     // Update UV Index (mock value)
-    const uvIndex = Math.random() * 10; 
+    const uvIndex = Math.random() * 10;
     document.getElementById("uv-index").textContent = uvIndex.toFixed(1);
 
     // Rainfall
@@ -70,30 +74,30 @@ async function fetchWeatherData() {
 
 function setupHamburgerMenu() {
   const menuSlider = document.getElementById("menu-slider");
-const overlay = document.getElementById("overlay");
-const hamburgerMenu = document.getElementById("hamburger-menu");
-const closeBtn = document.getElementById("close-btn");
+  const overlay = document.getElementById("overlay");
+  const hamburgerMenu = document.getElementById("hamburger-menu");
+  const closeBtn = document.getElementById("close-btn");
 
-hamburgerMenu.addEventListener("click", () => {
-  menuSlider.classList.add("active");
-  overlay.classList.add("active");
-});
+  hamburgerMenu.addEventListener("click", () => {
+    menuSlider.classList.add("active");
+    overlay.classList.add("active");
+  });
 
-closeBtn.addEventListener("click", () => {
-  menuSlider.classList.remove("active");
-  overlay.classList.remove("active");
-});
+  closeBtn.addEventListener("click", () => {
+    menuSlider.classList.remove("active");
+    overlay.classList.remove("active");
+  });
 
-overlay.addEventListener("click", () => {
-  menuSlider.classList.remove("active");
-  overlay.classList.remove("active");
-});
+  overlay.addEventListener("click", () => {
+    menuSlider.classList.remove("active");
+    overlay.classList.remove("active");
+  });
 
-// Other functions like 'navigateTo' and 'fetchWeatherData' can be added here
+  // Other functions like 'navigateTo' and 'fetchWeatherData' can be added here
 
 }
 
 // Initialize the page
 document.getElementById("greeting").textContent = getGreeting();
-await fetchWeatherData();
+fetchWeatherData();
 setupHamburgerMenu();
