@@ -1,6 +1,5 @@
-const API_KEY = ""; // Replace with your OpenWeather API key
-const CITY = "Sangli"; // Default city
-const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
+import { API_KEY, API_URL, CITY } from "./config.js";
+
 
 // Map OpenWeatherMap icon codes to local images
 const weatherImageMap = {

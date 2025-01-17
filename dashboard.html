@@ -46,14 +46,18 @@
           <img src="bell.png" alt=".">
           <h4>Alerts</h4>
         </div>
+        <a href="feedback.html">
         <div class="menu-card" onclick="navigateTo('insights.html')">
           <img src="analysis.png" alt=".">
           <h4>Insights & Feedback</h4>
         </div>
+      </a>
+        <a href="register.html">
         <div class="menu-card logout" onclick="navigateTo('logout.html')">
           <img src="logout.png" alt=".">
           <h4>Logout</h4>
         </div>
+      </a>
       </div>
     </div>
 
@@ -99,6 +103,7 @@
       <p id="advice">Loading advice...</p>
     </footer>
   </div>
-  <script src="dashboard.js"></script>
+  <script src="dashboard.js" type="module"></script>
+  <script src="config.js" type="module"></script>
 </body>
 </html>
