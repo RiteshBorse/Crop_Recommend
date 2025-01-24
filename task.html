@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultivAI Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f8f8f8; /* Light background */
+            color: #333; /* Darker text for contrast */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            cursor: pointer;
+        }
+
+        .logo img {
+            max-width: 120px;
+        }
+
+        .close-button {
+            cursor: pointer;
+        }
+
+        .task-summary {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            background-color: #36d080;
+            height: 100%;
+            width: 80%; /* Example progress */
+            border-radius: 5px;
+        }
+
+        .upcoming-task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .view-all {
+            color: #36d080;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .calendar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .month-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .day {
+            text-align: center;
+            padding: 5px;
+        }
+
+        .tasks-table {
+            max-height: 200px; /* Set a max height for scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tasks-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: top; /* Align text to the top of the cell */
+        }
+
+        .tasks-table tr:last-child td {
+            border-bottom: none; /* Remove border from the last row */
+        }
+
+        .time {
+            font-weight: bold;
+            white-space: nowrap; /* Prevent time from wrapping */
+        }
+
+        .task-checkbox {
+            margin-left: auto; /* Push checkbox to the right */
+        }
+
+        .manage-task {
+            background-color: #36d080;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="back-button">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="logo">
+                <img src="CultivAI (1).png" alt="CultivAI Logo">
+            </div>
+            <div class="close-button">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+
+        <div class="task-summary">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="upcoming-task">
+                <span>80% Tasks Completed</span>
+                <span>Upcoming task Today, 12:00</span>
+            </div>
+            <p>Setting up irrigation systems such as drip lines or sprinklers.</p>
+            <a href="#" class="view-all">View All Task ></a>
+        </div>
+
+        <div class="calendar">
+            <div class="month-selector">
+                <span>January</span>
+                <span><i class="fas fa-search"></i></span>
+            </div>
+            <div class="days">
+                <div class="day">Sun</div>
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day">20</div>
+                <div class="day">21</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+            </div>
+            <table class="tasks-table">
+                <tbody>
+                    <tr>
+                        <td class="time">11:00</td>
+                        <td>Sowing seeds or transplanting seedlings according to the crop rotation plan.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:45</td>
+                        <td>Sowing seeds or transplanting seedlings according to the crop rotation plan.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td class="time">12:00</td>
+                        <td>Setting up irrigation systems such as drip lines or sprinklers.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td class="time">13:00</td>
+                        <td>Fertilizing the crops with organic fertilizer.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:00</td>
+                        <td>Inspecting crops for pests and diseases.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td class="time">15:00</td>
+                        <td>Watering the crops.</td>
+                        <td><input type="checkbox" class="task-checkbox"></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <button class="manage-task">Manage Task</button>
+    </div>
+    <script src="task.js"></script>
+</body>
+
+</html>
