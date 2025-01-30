@@ -298,4 +298,26 @@ header {
   height: auto;
 }
 
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item img {
+  width: 28px; /* Adjust icon size */
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-item.active img {
+  opacity: 1;
+  filter: hue-rotate(120deg); /* Highlighted icon (green effect) */
+}
 
