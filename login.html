@@ -72,7 +72,13 @@
             cursor: pointer;
             width: 77%;
             margin-top: 20px;
+            
         }
+        button a {
+    text-decoration: none;
+    color: white; /* Ensures the text remains visible */
+    display: block; /* Makes the anchor fill the button's area */
+}
 
         .forgot-password {
             text-align: left;
@@ -83,33 +89,6 @@
             text-align: center;
             margin-top: 20px;
         }
-        .button {
-  margin-top: 10px;
-}
-
-.button button {
-  background-color: #36d080;
-  text-decoration: none;
-  border: none;
-  color: white;
-  padding: 20px 40px; /* Increased padding for larger button */
-  text-align: center;
-  font-size: 30px; /* Larger font size */
-  font-weight: bold; /* Make text bold */
-  cursor: pointer;
-  border-radius: 8px; /* Slightly larger border radius */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
-  transition: all 0.3s ease; /* Smooth hover effect */
-}
-.button button a{
-  text-decoration: none;
-  color: white;
-}
-/* Hover Effect */
-.button button:hover {
-  background-color: #36d080;
-  transform: scale(1.05); /* Slightly enlarges on hover */
-}
     </style>
 </head>
 
@@ -134,10 +113,10 @@
 
         <a href="#" class="forgot-password">Forget Password?</a>
 
-        <div class="button">
-            <button><a href="language.html">Get Started</a></button>
-          </div>
-
+        <button>
+            <a href="dashboard.html"><b>Log in</b></a>
+        </button>
+        
         <p class="signup-link">Don't have an account? <a href="register.html">Signup</a></p>
     </div>
 </body>
