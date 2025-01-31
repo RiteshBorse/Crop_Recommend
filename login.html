@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" src="login.js"></script> <!-- Login script -->
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,7 +18,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-image: url(crop.jpg); /* Replace with the actual image path */
+            background-image: url(crop.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -53,7 +54,7 @@
             margin-bottom: 5px;
         }
 
-        input[type="text"],
+        input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -72,16 +73,13 @@
             cursor: pointer;
             width: 77%;
             margin-top: 20px;
-            
         }
-        button a {
-    text-decoration: none;
-    color: white; /* Ensures the text remains visible */
-    display: block; /* Makes the anchor fill the button's area */
-}
 
         .forgot-password {
             text-align: left;
+            cursor: pointer;
+            color: #007bff;
+            display: block;
             margin-bottom: 15px;
         }
 
@@ -89,21 +87,30 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        #error-message, #success-message {
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #error-message { color: red; }
+        #success-message { color: green; }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="logo">
-            <img src="CultivAI (1).png" alt="CultivAI Logo"> 
+            <img src="CultivAI (1).png" alt="CultivAI Logo">
         </div>
 
         <h2>Welcome Back</h2>
         <p>Log in to your account</p>
 
         <div class="form-group">
-            <label for="phone">Phone number</label>
-            <input type="text" id="phone" placeholder="+91 98432 XXXXX" value="+91 98432 XXXXX">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
         </div>
 
         <div class="form-group">
@@ -111,14 +118,17 @@
             <input type="password" id="password" placeholder="********">
         </div>
 
-        <a href="#" class="forgot-password">Forget Password?</a>
+        <a class="forgot-password" id="forgotPasswordBtn">Forgot Password?</a>
 
-        <button>
-            <a href="dashboard.html"><b>Log in</b></a>
-        </button>
-        
+        <button id="loginBtn"><b>Log in</b></button>
+
+        <p id="error-message">Invalid email or password.</p>
+        <p id="success-message">Password reset email sent! Check your inbox.</p>
+
         <p class="signup-link">Don't have an account? <a href="register.html">Signup</a></p>
     </div>
+
+    <script type="module" src="login.js"></script>
 </body>
 
 </html>
