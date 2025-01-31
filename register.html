@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultivAI Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script type="module" src="register.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .signup-btn {
+            background-color: #36d080;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 50%;
+            margin-top: 20px;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="CultivAI (1).png" alt="CultivAI Logo">
+        </div>
+        <h1>Register</h1>
+        <div class="form-wrapper">
+            <input type="text" id="name" placeholder="Enter Name">
+            <input type="tel" id="phone" placeholder="Enter phone number">
+            <input type="email" id="email" placeholder="Enter Email">
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        </div>
+        <center>
+            <button class="signup-btn" id="signupBtn">Sign Up</button>
+        </center>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDBEJWXqwh2HDHRWrH2B6TL0UBc87lNyw",
+            authDomain: "cultivai-8db33.firebaseapp.com",
+            projectId: "cultivai-8db33",
+            storageBucket: "cultivai-8db33.appspot.com",
+            messagingSenderId: "927881566024",
+            appId: "1:927881566024:web:13c26c19e7db8f9a14c57d",
+            measurementId: "G-SMV01CZZQ2"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        document.getElementById("signupBtn").addEventListener("click", async () => {
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+        
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+        
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+        
+                await setDoc(doc(db, "users", user.uid), {
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    uid: user.uid
+                });
+        
+                alert("User registered successfully!");
+                window.location.href = "dashboard.html";
+            } catch (error) {
+                console.error("Error during registration:", error);
+                alert(error.message);
+            }
+        });
+    </script>
+</body>
+</html>
