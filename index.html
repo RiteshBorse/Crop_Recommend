@@ -1,41 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CultivAI</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  </head>
-  
+    <title>CultivAI Language Selection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        .language-icon {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+        }
+
+        .language-icon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .language-options {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px; /* Increased spacing between options */
+            cursor: pointer;
+        }
+
+        .radio-button {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .radio-button.selected {
+            border: 5px solid #36d080;
+        }
+
+        .button {
+            background-color: #36d080;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .skip-button {
+            text-decoration: none;
+            color: gray;
+            float: right; /* Keep Skip to the right */
+            margin-top: 10px; /* Add a little top margin */
+        }
+        .button a {
+            text-decoration: none;
+            color: white;
+            }
+        
+    </style>
+</head>
 <body>
-  <!-- Green Header Section -->
-  <div class="header">
-    <h1 class="header-title"></h1>
-    <!-- White Circle Element -->
-    <div class="circle">
-      <div class="circle-image-container">
-        <img src="Untitled design (1).png" alt="Circle Icon" class="circle-image">
-      </div>
-    </div>
-  </div>
-  
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Title and Tagline -->
-    <div class="logo-container">
-      <img src="CultivAI (1).png" alt="CultivAI Logo" class="logo-image">
+    <div class="container">
+        <div class="logo">
+            <img src="CultivAI (1).png" alt="CultivAI Logo">
+        </div>
+        <a href="login.html" class="skip-button">Skip</a>
+        <div class="language-icon">
+            <img src="translate.png" alt="Language Icon">
+        </div>
+        <h2>Choose Your Preferred Language</h2>
+        <div class="language-options">
+            <div class="language-option" onclick="selectLanguage(0)">
+                <div class="radio-button selected" id="radio0"></div>
+                <span>English</span>
+            </div>
+            <div class="language-option" onclick="selectLanguage(1)">
+                <div class="radio-button" id="radio1"></div>
+                <span>हिंदी</span>
+            </div>
+            <div class="language-option" onclick="selectLanguage(2)">
+                <div class="radio-button" id="radio2"></div>
+                <span>मराठी</span>
+            </div>
+            <div class="language-option" onclick="selectLanguage(3)">
+                <div class="radio-button" id="radio3"></div>
+                <span>कन्नड़</span>
+            </div>
+        </div>
+        <button class="button"><a href="login.html">Save & Continue</a></button>
     </div>
 
-    <!-- Description -->
-    <p class="text">
-      An AI-powered decision support tool to help farmers optimize crop strategies and adapt to changing climate conditions. 🌱
-    </p>
-
-    <!-- Get Started Button -->
-    <div class="button">
-      <button><a href="language.html">Get Started</a></button>
-    </div>
-  </div>
+    <script>
+        function selectLanguage(index) {
+            const radioButtons = document.querySelectorAll('.radio-button');
+            radioButtons.forEach((button, i) => {
+                if (i === index) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

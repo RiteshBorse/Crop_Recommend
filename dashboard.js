@@ -1,9 +1,6 @@
-
-
 const CITY = "Nashik";
 const API_KEY = `580cb0981ce9a294a111aa2343a073b1`;
 const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
-
 
 // Map OpenWeatherMap icon codes to local images
 const weatherImageMap = {
@@ -46,17 +43,20 @@ async function fetchWeatherData() {
     document.querySelector(".location").textContent = `${data.name}, ${data.sys.country}`;
     document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
-    // Update UV Index (mock value)
+    // Update UV Index (Mock value)
     const uvIndex = Math.random() * 10;
     document.getElementById("uv-index").textContent = uvIndex.toFixed(1);
 
-    // Rainfall
-    const rainfallProbability = data.rain ? data.rain["1h"] || 40 : 0;
-    document.getElementById("rainfall-chances").textContent = `${rainfallProbability}%`;
-    document.getElementById("rainfall-bar").style.width = `${rainfallProbability}%`;
+    // Estimate Rainfall Probability (No OpenWeatherMap `pop`)
+    const humidity = data.main.humidity;
+    const cloudiness = data.clouds.all;
+    const estimatedRainfallProbability = Math.min((humidity * 0.5) + (cloudiness * 0.5), 100);
+
+    document.getElementById("rainfall-chances").textContent = `${estimatedRainfallProbability.toFixed(0)}%`;
+    document.getElementById("rainfall-bar").style.width = `${estimatedRainfallProbability}%`;
 
     // Update Advice
-    const advice = rainfallProbability > 50
+    const advice = estimatedRainfallProbability > 50
       ? "Rainfall is likely today—plan your crop irrigation accordingly! 🌧️"
       : "Rainfall is unlikely today—ensure your crops stay hydrated by watering them promptly. 🌱";
     document.getElementById("advice").textContent = advice;
@@ -92,9 +92,6 @@ function setupHamburgerMenu() {
     menuSlider.classList.remove("active");
     overlay.classList.remove("active");
   });
-
-  // Other functions like 'navigateTo' and 'fetchWeatherData' can be added here
-
 }
 
 // Initialize the page

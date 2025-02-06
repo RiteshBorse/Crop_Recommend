@@ -9,7 +9,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+    overflow-y: auto;
 }
 
 .container {
@@ -20,6 +21,29 @@ body {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
+  min-height: 100vh; /* Ensures container stretches to fit content */
+  overflow-y: auto;
+}
+/* For Webkit-based browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust width */
+}
+
+/* Track (Background) */
+::-webkit-scrollbar-track {
+  background: #e6ffe6; /* Light green */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: #2e7d32; /* Dark Green */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Scrollbar Handle on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1b5e20; /* Even darker green */
 }
 
 header {
