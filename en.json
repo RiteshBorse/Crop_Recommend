@@ -1,0 +1,15 @@
+{
+    "title": "CultivAI Login",
+    "welcome": "Welcome Back",
+    "login_subtitle": "Log in to your account",
+    "email_label": "Email",
+    "email_placeholder": "Enter your email",
+    "password_label": "Password",
+    "password_placeholder": "********",
+    "forgot_password": "Forgot Password?",
+    "login_button": "Log in",
+    "error_message": "Invalid email or password.",
+    "success_message": "Password reset email sent! Check your inbox.",
+    "signup_text": "Don't have an account?",
+    "signup_link": "Signup"
+}

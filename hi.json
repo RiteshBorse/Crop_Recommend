@@ -1,0 +1,15 @@
+{
+    "title": "CultivAI लॉगिन",
+    "welcome": "वापसी पर स्वागत है",
+    "login_subtitle": "अपने खाते में लॉगिन करें",
+    "email_label": "ईमेल",
+    "email_placeholder": "अपना ईमेल दर्ज करें",
+    "password_label": "पासवर्ड",
+    "password_placeholder": "********",
+    "forgot_password": "पासवर्ड भूल गए?",
+    "login_button": "लॉग इन करें",
+    "error_message": "अमान्य ईमेल या पासवर्ड।",
+    "success_message": "पासवर्ड रीसेट ईमेल भेजा गया! अपने इनबॉक्स की जाँच करें।",
+    "signup_text": "कोई खाता नहीं है?",
+    "signup_link": "साइनअप"
+}

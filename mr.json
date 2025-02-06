@@ -1,0 +1,14 @@
+{
+    "title": "परत स्वागत आहे",
+    "subtitle": "तुमच्या खात्यात लॉगिन करा",
+    "email_label": "ईमेल",
+    "email_placeholder": "तुमचा ईमेल टाका",
+    "password_label": "पासवर्ड",
+    "password_placeholder": "********",
+    "forgot_password": "पासवर्ड विसरलात?",
+    "login_button": "लॉगिन करा",
+    "signup_text": "खाते नाही?",
+    "signup_link": "साइन अप करा",
+    "error_message": "अवैध ईमेल किंवा पासवर्ड.",
+    "success_message": "पासवर्ड रीसेट ईमेल पाठवला! तुमच्या इनबॉक्सची तपासणी करा."
+}
