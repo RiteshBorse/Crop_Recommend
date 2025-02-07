@@ -1,0 +1,224 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>🌱 CultivAI Dashboard & Tasks</title>
+      <link rel="stylesheet" href="try.css">
+      <style>
+       
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <header>
+            <div class="logo-container">
+              <img src="CultivAI (1).png" alt="CultivAI Logo" class="logo-image">
+            </div>
+            <br><br>
+            <div id="greeting" class="greeting" style="font-size: 30px; font-weight: bold;">
+                <b>--</b>
+            </div>
+            <div class="hamburger-menu" id="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </header>
+    
+        <div class="menu-slider" id="menu-slider">
+          <button class="close-btn" id="close-btn">✖</button>
+          <br><br>
+          <div class="menu-header">
+            <img src="Bhupendra Jogi.png" alt="User Profile" class="menu-image">
+            <h3>Welcome, Farmer!</h3>
+          </div>
+          
+          <hr>
+          <br>
+          <div class="menu-cards">
+            <a href="dashboard_task.html">
+              <div class="menu-card" onclick="navigateTo('dashboard_task.html')">
+                
+            <img src="dashboard.png" alt=".">
+            <h4>Dashboard</h4>
+          </div>
+        </a>
+        <div class="menu-card" onclick="navigateTo('crop-strategies.html')">
+          <img src="rice.png" alt=".">
+          <h4>Crop Strategies</h4>
+        </div>
+        <div class="menu-card" onclick="navigateTo('alerts.html')">
+          <img src="bell.png" alt=".">
+          <h4>Alerts</h4>
+        </div>
+        <a href="feedback.html">
+          <div class="menu-card" onclick="navigateTo('insights.html')">
+            <img src="analysis.png" alt=".">
+            <h4>Insights & Feedback</h4>
+          </div>
+        </a>
+        <a href="login.html">
+          <div class="menu-card logout" onclick="navigateTo('logout.html')">
+            <img src="logout.png" alt=".">
+            <h4>Logout</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Weather Overview Section -->
+    <section id="weather-overview" class="weather-overview">
+      <div class="info-box-weather">
+        <div class="graphic">
+          <img src="" alt="Weather Icon" id="weather-icon">
+        </div>
+        <div class="main-weather">
+          <b>
+            <p id="weather-condition">--</p>
+            <p id="temperature">--°C</p>
+            <p class="location">Jalgaon, India</p>
+          </b>
+        </div>
+      </div>
+    </section>
+    
+    <section id="additional-details" class="additional-details">
+      <div class="info-box">
+        <img src="uv-index.png" alt="UV Index Icon">
+        <p><b>UV Index</b></p>
+        <b><p id="uv-index">--</p></b>
+      </div>
+      <div class="info-box">
+        <img src="humidity-icon.png" alt="Humidity Icon">
+        <b><p>Humidity</p>
+        <p id="humidity">--%</p></b>
+      </div>
+    </section>
+
+    <section id="rainfall-info" class="rainfall-info">
+      <h3>Rainfall Probability</h3>
+      <div class="progress-bar">
+        <div id="rainfall-bar"></div>
+      </div>
+      <p id="rainfall-chances">--%</p>
+      <p id="advice"></p>
+    </section>
+
+    <!-- Task Section -->
+    <div class="task-summary">
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <div class="upcoming-task">
+        <span id="tasksCompleted">80% Tasks Completed</span>
+        <span id="upcomingTaskTime">Upcoming task Today, 12:00</span>
+      </div>
+      <p id="upcomingTaskDescription">Setting up irrigation systems such as drip lines or sprinklers.</p>
+      <a href="#" class="view-all">View All Task ></a>
+    </div>
+
+    <div class="calendar">
+      <div class="month-selector">
+        <span id="currentMonth">January</span>
+        <span><i class="fas fa-search"></i></span>
+      </div>
+      <div class="days">
+        <div class="day">Sun</div>
+        <div class="day">Mon</div>
+        <div class="day">Tue</div>
+        <div class="day">Wed</div>
+        <div class="day">Thu</div>
+        <div class="day">Fri</div>
+        <div class="day">Sat</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+      </div>
+      <table class="tasks-table" id="tasksTable">
+        <tbody>
+          <!-- Task rows will be populated here -->
+          <tr>
+            <td class="time">11:00</td>
+            <td>
+              Sowing seeds or transplanting seedlings according to the crop
+              rotation plan.
+            </td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+          <tr>
+            <td class="time">11:45</td>
+            <td>
+              Sowing seeds or transplanting seedlings according to the crop
+              rotation plan.
+            </td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+          <tr>
+            <td class="time">12:00</td>
+            <td>
+              Setting up irrigation systems such as drip lines or sprinklers.
+            </td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+          <tr>
+            <td class="time">13:00</td>
+            <td>Fertilizing the crops with organic fertilizer.</td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+          <tr>
+            <td class="time">14:00</td>
+            <td>Inspecting crops for pests and diseases.</td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+          <tr>
+            <td class="time">15:00</td>
+            <td>Watering the crops.</td>
+            <td><input type="checkbox" class="task-checkbox" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="manage-task"><b>Manage Task</b></button>
+
+    <footer class="bottom-nav">
+      <a href="dashboard_task.html" class="nav-item active">
+        <img src="home.png" alt="Home">
+      </a>
+     
+      <a href="maps.html" class="nav-item">
+        <img src="people.png" alt="Map">
+      </a>
+      <a href="downloads.html" class="nav-item">
+        <img src="download.png" alt="Download">
+      </a>
+    </footer>
+  </div>
+  <script src="dashboard.js" type="module"></script>
+  <script src="task.js"></script>
+  <script>
+    // Combine the JavaScript logic from both pages here
+    // Ensure to initialize the weather data and task data
+    const CITY = "Nashik";
+    const API_KEY = `580cb0981ce9a294a111aa2343a073b1`;
+    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
+ // Call initialization functions if they exist
+ document.addEventListener("DOMContentLoaded", function() {
+    fetchWeatherData(); // From dashboard.js
+    generateCalendar(new Date()); // From task.js
+    updateTasks(); // From task.js
+  });
+  
+ 
+</script>
+
+</body>
+</html>
