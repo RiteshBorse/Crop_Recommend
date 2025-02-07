@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmer Information</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="module" src="farmerinfo.js"></script>
     <style>
         * {
             margin: 0;
@@ -12,7 +13,6 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
         body {
             display: flex;
             justify-content: center;
@@ -22,7 +22,6 @@
             margin: 0;
             padding: 10px;
         }
-
         .container {
             width: 90%;
             max-width: 1100px;
@@ -34,49 +33,34 @@
             flex-direction: column;
             align-items: center;
         }
-
         .logo {
             text-align: center;
-            margin-top: 130px;
+            margin-bottom: 20px;
         }
-
         .logo img {
             max-width: 180px;
-            max-height: 100px; /* Adjust based on actual cropping */
+            max-height: 100px;
         }
-
         h2 {
             text-align: center;
             font-size: 22px;
             margin-bottom: 10px;
             color: #36d080;
         }
-
-        h3 {
-            text-align: left;
-            font-size: 18px;
-            margin-bottom: 10px;
-            width: 100%;
-            color: #36d080;
-        }
-
         form {
             width: 100%;
         }
-
         .form-group {
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
         }
-
         .form-group label {
             font-size: 14px;
             margin-bottom: 5px;
             font-weight: bold;
             color: #36d080;
         }
-
         .form-group select, .form-group input {
             width: 100%;
             padding: 12px;
@@ -84,22 +68,18 @@
             border-radius: 5px;
             font-size: 16px;
             background-color: #f9f9f9;
-            cursor: pointer;
             transition: border 0.3s ease-in-out;
         }
-
         .form-group select:focus, .form-group input:focus {
             border-color: #36d080;
             outline: none;
         }
-
         .btn-container {
             display: flex;
             justify-content: center;
             width: 100%;
             margin-top: 15px;
         }
-
         .btn {
             width: 50%;
             padding: 12px;
@@ -112,16 +92,8 @@
             border: none;
             transition: background 0.3s;
         }
-
         .btn:hover {
             background: #15ba80;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-                padding: 20px;
-            }
         }
     </style>
 </head>
@@ -133,47 +105,46 @@
         </div>
 
         <h2>Crop Information</h2>
-        <h3>Personal Info</h3>
 
-        <form>
+        <form id="farmerForm">
             <div class="form-group">
                 <label for="farmerType">Farmer Type</label>
-                <select id="farmerType">
-                    <option>Owner</option>
-                    <option>Tenant</option>
+                <select id="farmerType" required>
+                    <option value="Owner">Owner</option>
+                    <option value="Tenant">Tenant</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="season">Season</label>
-                <select id="season">
-                    <option>Kharif</option>
-                    <option>Rabi</option>
-                    <option>Autumn</option>
-                    <option>Summer</option>
-                    <option>Whole Year</option>
-                    <option>Winter</option>
+                <select id="season" required>
+                    <option value="Kharif">Kharif</option>
+                    <option value="Rabi">Rabi</option>
+                    <option value="Autumn">Autumn</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Whole Year">Whole Year</option>
+                    <option value="Winter">Winter</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="state">State</label>
-                <input type="text" id="state" placeholder="Enter State">
+                <input type="text" id="state" placeholder="Enter State" required>
             </div>
 
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" id="city" placeholder="Enter City">
+                <input type="text" id="city" placeholder="Enter City" required>
             </div>
 
             <div class="form-group">
                 <label for="sowingDate">Date of Sowing</label>
-                <input type="date" id="sowingDate">
+                <input type="date" id="sowingDate" required>
             </div>
 
             <div class="form-group">
                 <label for="harvestingDate">Date of Harvesting</label>
-                <input type="date" id="harvestingDate">
+                <input type="date" id="harvestingDate" required>
             </div>
 
             <div class="btn-container">
@@ -181,6 +152,81 @@
             </div>
         </form>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getFirestore, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDBEJWXqwh2HDHRWrH2B6TL0UBc87lNyw",
+            authDomain: "cultivai-8db33.firebaseapp.com",
+            projectId: "cultivai-8db33",
+            storageBucket: "cultivai-8db33.appspot.com",
+            messagingSenderId: "927881566024",
+            appId: "1:927881566024:web:13c26c19e7db8f9a14c57d",
+            measurementId: "G-SMV01CZZQ2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById("farmerForm").addEventListener("submit", async (e) => {
+            e.preventDefault(); 
+
+            const farmerType = document.getElementById("farmerType").value;
+            const season = document.getElementById("season").value;
+            const state = document.getElementById("state").value.trim();
+            const city = document.getElementById("city").value.trim().toUpperCase(); // Convert city to uppercase
+            const sowingDate = document.getElementById("sowingDate").value;
+            const harvestingDate = document.getElementById("harvestingDate").value;
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    try {
+                        // Save 6 inputs to Firestore
+                        await setDoc(doc(db, "farmers", user.uid), {
+                            farmerType,
+                            season,
+                            state,
+                            city,
+                            sowingDate,
+                            harvestingDate,
+                            uid: user.uid
+                        });
+
+                        console.log("User data saved. Fetching prediction...");
+
+                        // Call Flask API to get crop prediction
+                        fetch("http://127.0.0.1:5000/predict", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ uid: user.uid })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.recommended_crop) {
+                                alert("Recommended Crop: " + data.recommended_crop);
+                            } else {
+                                alert("Error: " + data.error);
+                            }
+                        })
+                        .catch(error => console.error("Error fetching prediction:", error));
+
+                        alert("Farmer data saved successfully!");
+                        window.location.href = "dashboard.html"; 
+                    } catch (error) {
+                        console.error("Error saving farmer data:", error);
+                        alert("Failed to save data: " + error.message);
+                    }
+                } else {
+                    alert("No user is logged in.");
+                    window.location.href = "register.html";
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
