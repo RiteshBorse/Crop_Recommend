@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Crop Recommendation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #d4edda, #a8df8e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+        }
+
+        .container img {
+            width: 80px;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            color: #2d6a4f;
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #444;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #1b4332;
+            font-weight: 600;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #40916c;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #2d6a4f;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+
+        .info-section h2 {
+            color: #2d6a4f;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-section ul {
+            padding-left: 20px;
+            color: #555;
+        }
+
+        .info-section ul li {
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .info-section ul li i {
+            color: #2d6a4f;
+            margin-right: 10px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .container, .info-section {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            p, .info-section ul li {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1>🌿 Alternative Crop Suggestion</h1>
+        <p>Your current crop: <strong id="currentCrop">Fetching...</strong></p>
+        <p>Suggested alternative crop: <strong id="altCrop">N/A</strong></p>
+        <button id="getAlternativeCrop"><i class="fas fa-seedling"></i> Get Alternative Crop</button>
+    </div>
+
+    <div class="info-section">
+        <h2><i class="fas fa-chart-line"></i> How We Predict Alternative Crops</h2>
+        <ul>
+            <li><i class="fas fa-leaf"></i> <strong>Soil Quality:</strong> Analyzing soil nutrients and fertility needs.</li>
+            <li><i class="fas fa-cloud-rain"></i> <strong>Climate Conditions:</strong> Considering rainfall patterns and temperature.</li>
+            <li><i class="fas fa-seedling"></i> <strong>Crop Rotation:</strong> Choosing crops that enrich the soil.</li>
+            <li><i class="fas fa-chart-bar"></i> <strong>Market Demand:</strong> Ensuring better profitability.</li>
+            <li><i class="fas fa-brain"></i> <strong>Historical Data:</strong> Using expert knowledge and AI-driven insights.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 CultivAI - Helping Farmers Grow Smarter 🌾</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDBEJWXqwh2HDHRWrH2B6TL0UBc87lNyw",
+            authDomain: "cultivai-8db33.firebaseapp.com",
+            projectId: "cultivai-8db33",
+            storageBucket: "cultivai-8db33.appspot.com",
+            messagingSenderId: "927881566024",
+            appId: "1:927881566024:web:13c26c19e7db8f9a14c57d",
+            measurementId: "G-SMV01CZZQ2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const button = document.getElementById("getAlternativeCrop");
+        const currentCropElem = document.getElementById("currentCrop");
+        const altCropElem = document.getElementById("altCrop");
+
+        button.addEventListener("click", async () => {
+            button.textContent = "Finding...";
+            button.disabled = true;
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    try {
+                        const userDoc = await getDoc(doc(db, "farmers", user.uid));
+
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            const currentCrop = userData.recommendedCrop;
+                            currentCropElem.textContent = currentCrop || "Not found";
+
+                            if (!currentCrop) {
+                                alert("No crop found in your data!");
+                                resetButton();
+                                return;
+                            }
+
+                            const response = await fetch("http://127.0.0.1:5001/alternative-crop", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ uid: user.uid })
+                            });
+
+                            const result = await response.json();
+                            altCropElem.textContent = result.alternative_crop || "Not Found";
+
+                        } else {
+                            alert("User data not found!");
+                        }
+                    } catch (error) {
+                        alert("Error fetching data.");
+                    }
+                }
+                resetButton();
+            });
+        });
+
+        function resetButton() {
+            button.textContent = "Get Alternative Crop";
+            button.disabled = false;
+        }
+    </script>
+
+</body>
+</html>
