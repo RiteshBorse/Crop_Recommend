@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>FarmHub - Home</title> 
+    <link rel="stylesheet" href="comm.css"> 
+</head> 
+<body> 
+
+    <div class="container"> 
+        <a href="#" class="back-button">← Back</a> 
+
+        <div class="logo"> 
+            <img src="CultivAI (1).png" alt="CultivAI Logo"> 
+        </div> 
+
+        <h1>Welcome to FarmHub!</h1> 
+
+        <div class="section"> 
+            <h2>Available Job Opportunities</h2> 
+            <div class="job-listings"> 
+                <div class="job-listing" 
+                    data-description="Experienced tomato pickers needed.  Work is physically demanding but rewarding.  Transportation provided." 
+                    data-working-hours="8 AM - 5 PM, Monday to Saturday" 
+                    data-total-wages="₹1400/week (estimated)" 
+                    data-location="Nashik"> 
+                    <h3>Need Labor for Harvesting Tomatoes</h3> 
+                    <p>Location: Nashik</p> 
+                    <p>Wages: ₹200/day</p> 
+                    <button class="view-details-btn">View Details</button> 
+                </div> 
+                <div class="job-listing" 
+                    data-description="Harvesting rice requires speed and efficiency.  Training provided.  Lunch included." 
+                    data-working-hours="7 AM - 4 PM, Monday to Friday" 
+                    data-total-wages="₹1750/week (estimated)" 
+                    data-location="Pune"> 
+                    <h3>Urgent: Workers Required for Rice Harvesting</h3> 
+                    <p>Location: Pune</p> 
+                    <p>Wages: ₹250/day</p> 
+                    <button class="view-details-btn">View Details</button> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div class="section"> 
+            <h2>Community Forum</h2> 
+            <p>Join the discussion and share your experiences with other farmers.</p> 
+            <a href="#" class="btn" id="viewForumButton">View Forum</a>
+        </div> 
+
+        <div class="section"> 
+            <h2>Connect with Other Farmers</h2> 
+            <p>Find local farmers and build relationships.</p> 
+            <a href="#" class="btn" id="findFarmersButton">Find Farmers</a>
+        </div> 
+
+    </div> 
+
+    <div class="popup" id="jobDetailsPopup">
+        <span class="close-popup">&times;</span>  <h3>Job Details</h3>
+        <p id="jobTitle"></p>
+        <p id="jobLocation"></p>
+        <p id="jobWages"></p>
+        <p id="jobDescription"></p>
+        <p id="jobWorkingHours"></p>
+        <p id="jobTotalWages"></p>
+        <button class="apply-btn">Apply Now</button>
+    </div>
+
+    <div class="popup" id="chatPopup"> 
+        <span class="close-popup">&times;</span> 
+        <h3>Community Forum - Group Chat</h3> 
+
+        <div class="chat-box"> 
+            <div class="chat-messages" id="chatMessages"></div> 
+        </div> 
+
+        <div class="chat-input"> 
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key === 'Enter') sendMessage()"> 
+            <button class="send-btn" onclick="sendMessage()">Send</button> 
+        </div> 
+    </div> 
+
+    <div class="popup" id="farmersPopup"> 
+        <span class="close-popup">&times;</span> 
+        <h3>Connect with Farmers</h3> 
+        <div class="farmer-profiles"> 
+            <div class="farmer-profile"> 
+                <img src="Bhupendra Jogi.png" alt="Farmer 1"> 
+                <h4>Sharad Patil</h4> 
+                <p>Location: Nashik</p> 
+                <p>Specialty: Tomatoes, Onions</p> 
+                <button class="connect-btn">Connect</button> 
+            </div> 
+
+            <div class="farmer-profile"> 
+                <img src="Bhupendra Jogi.png" alt="Farmer 2"> 
+                <h4>Vikas Rathod</h4> 
+                <p>Location: Pune</p> 
+                <p>Specialty: Rice, Wheat</p> 
+                <button class="connect-btn">Connect</button> 
+            </div> 
+            </div> 
+    </div> 
+
+
+    <script src="comm.js"></script> 
+</body> 
+</html>
